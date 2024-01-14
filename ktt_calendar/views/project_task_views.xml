@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="ktt_calendar_project_task_form_inherit" model="ir.ui.view">
+            <field name="name">ktt.calender.project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2" />
+            <field name="arch" type="xml">
+                <xpath expr="//group/group/field[@name='project_id']" position="after">
+                    <field name="is_committed" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ktt_calendar_project_task_kanban_view_extened">
+            <field name="name">ktt.project.task.kanban.view.extened</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban/templates/t[@t-name='kanban-box']" position="inside">
+                    <field name="is_committed" invisible="1" />
+                    <t t-if="record.is_committed.raw_value">
+                        <span class="ktt-project-task-sticker">
+                            <span class="ktt-project-task-sticker-label">Committed</span>
+                        </span>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

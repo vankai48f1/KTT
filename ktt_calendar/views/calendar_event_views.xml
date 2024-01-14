@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <data>
+  
+    <record id="ktt_calendar_event_view_form_inherit" model="ir.ui.view">
+      <field name="name">ktt.calendar.event.view.form.inherit</field>
+      <field name="model">calendar.event</field>
+      <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//page[@name='page_invitations']" position="after">
+            <page name="task_relation" string="Tasks">
+              <field name="task_ids" widget="many2many">
+                <tree string="Tasks details" editable="bottom">
+                  <field name="task_code"/>
+                  <field name="name"/>
+                  <field name="user_ids" widget="many2many_avatar_user"/>
+                  <field name="activity_ids" widget="list_activity"/>
+                  <field name="tag_ids" widget="many2many_tags"/>
+                  <field name="stage_id"/>
+                  <field name="project_id" column_invisible="True"/>
+                  <field name="company_id" column_invisible="True"/>
+                </tree>
+              </field>
+            </page>
+          </xpath>
+      </field>
+    </record>
+    
+  </data>
+  
+
+</odoo>
